@@ -19,7 +19,7 @@ class CreateCertificates extends Migration
             $table->year('year_of_certification');
             $table->string('institution');
             $table->string('validity_period');
-            $table->integer('candidate_id')->unsigned();
+            $table->bigInteger('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });

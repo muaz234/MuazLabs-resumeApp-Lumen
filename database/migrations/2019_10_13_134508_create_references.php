@@ -21,7 +21,7 @@ class CreateReferences extends Migration
             $table->string('year_known');
             $table->string('email');
             $table->string('contact_number');
-            $table->integer('candidate_id');
+            $table->bigInteger('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });

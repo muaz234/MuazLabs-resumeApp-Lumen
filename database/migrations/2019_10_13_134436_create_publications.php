@@ -22,7 +22,7 @@ class CreatePublications extends Migration
             $table->string('published_at');
             $table->string('institution');
             $table->string('conference_presented');
-            $table->integer('candidate_id')->unsigned();
+            $table->bigInteger('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });

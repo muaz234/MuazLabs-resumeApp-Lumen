@@ -19,7 +19,7 @@ class CreatePortfolio extends Migration
             $table->string('description');
             $table->string('duration');
             $table->string('year');
-            $table->integer('candidate_id')->unsigned();
+            $table->bigInteger('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });

@@ -1,9 +1,10 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePersonalInfo extends Migration
+class CreateCandidatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +13,8 @@ class CreatePersonalInfo extends Migration
      */
     public function up()
     {
-        Schema::create('candidates', function (Blueprint $table) {
+        Schema::create('candidates', function (Blueprint $table) 
+        {
             $table->bigIncrements('id');
             $table->string('fullname');
             $table->string('job_title');
@@ -31,6 +33,6 @@ class CreatePersonalInfo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_info');
+        Schema::dropIfExists('candidates');
     }
 }
