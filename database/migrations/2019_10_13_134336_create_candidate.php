@@ -12,7 +12,7 @@ class CreatePersonalInfo extends Migration
      */
     public function up()
     {
-        Schema::create('personal_infos', function (Blueprint $table) {
+        Schema::create('candidates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fullname');
             $table->string('job_title');

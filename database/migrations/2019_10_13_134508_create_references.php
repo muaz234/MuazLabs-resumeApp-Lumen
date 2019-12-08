@@ -22,7 +22,7 @@ class CreateReferences extends Migration
             $table->string('email');
             $table->string('contact_number');
             $table->integer('candidate_id');
-            $table->foreign('candidate_id')->references('id')->on('personal_infos')->onDelete('cascade');
+            $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });
     }

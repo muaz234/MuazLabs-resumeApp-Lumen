@@ -21,7 +21,7 @@ class CreateWorkExperience extends Migration
             $table->string('description');
             $table->string('location');
             $table->integer('candidate_id')->unsigned();
-            $table->foreign('candidate_id')->references('id')->on('personal_infos')->onDelete('cascade');
+            $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });
     }

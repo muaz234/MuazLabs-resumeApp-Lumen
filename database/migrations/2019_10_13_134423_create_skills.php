@@ -18,7 +18,7 @@ class CreateSkills extends Migration
             $table->string('name');
             $table->string('competency_rating');
             $table->integer('candidate_id')->unsigned();
-            $table->foreign('candidate_id')->references('id')->on('personal_infos')->onDelete('cascade');
+            $table->foreign('candidate_id')->references('id')->on('candidates')->onDelete('cascade');
             $table->timestamps();
         });
     }
