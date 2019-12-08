@@ -9,27 +9,27 @@ class Candidate extends Model
 
     protected $guarded = [];
 
-    public function education_history()
+    public function education_histories()
     {
         return $this->hasMany('App\EducationHistory');
     }
 
-    public function portfolio()
+    public function portfolios()
     {
         return $this->hasMany('App\Portfolio');
     }
 
-    public function publication()
+    public function publications()
     {
         return $this->hasMany('App\Publication');
     }
 
-    public function reference()
+    public function references()
     {
         return $this->hasMany('App\Reference');
     }
 
-    public function work_experience()
+    public function work_experiences()
     {
         return  $this->hasMany('App\WorkExperience');
     }
