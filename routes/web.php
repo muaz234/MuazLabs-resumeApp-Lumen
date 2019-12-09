@@ -11,6 +11,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'candidates'], function () use ($router) //serve candidates prefix
+{
+    $router->get('/', 'CandidateController@index');
+    $router->get('{/id}', 'CandidateController@show');
+    $router->post('/', 'CandidateController@add');
+    $router->put('/{id}', 'CandidateController@edit');
+    $router->delete('/{id}', 'CandidateController@delete');
 });
+
