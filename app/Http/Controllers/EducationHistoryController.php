@@ -49,16 +49,16 @@ class EducationHistoryController extends Controller
                     $education->description = $request->description;
                     $education->institution = $request->institution;
                     $education->save();
-                    return response()->json(['message' => 'Updated successfully', 'data' => $education]);
+                    return response()->json(['message' => 'Updated successfully', 'data' => $education], 200);
                 }
                 else
                 {
-                    return response()->json(['message' => 'Unable to update. No history data found.']);
+                    return response()->json(['message' => 'Unable to update. No history data found.'], 204);
                 }
         }
         else
         {
-            return response()->json(['message' => 'No id is passed along the request']);
+            return response()->json(['message' => 'No id is passed along the request'], 400);
         }
     }
 
@@ -79,7 +79,7 @@ class EducationHistoryController extends Controller
         }
         else
         {
-            return response()->json(['message'=>'No Id was passed in the request. Please ensure correct parameter is passed.']);
+            return response()->json(['message'=>'No Id was passed in the request. Please ensure correct parameter is passed.'], 400);
         }
     }
 
@@ -90,16 +90,16 @@ class EducationHistoryController extends Controller
             $education = EducationHistory::where('candidate_id', $candidateId)->get();
             if(!empty($education))
             {
-                return response()->json(['message' => 'Data retrieved successfully.', 'data' => $education]);
+                return response()->json(['message' => 'Data retrieved successfully.', 'data' => $education], 200);
             }
             else
             {
-                
+                return response()->json(['message' => 'No history data was found.'], 204);
             }
         }
         else
         {
-            return response()->json(['message' => 'No candidate ID was passed. Ensure to check your request URL']);
+            return response()->json(['message' => 'No candidate ID was passed. Ensure to check your request URL'], 400);
         }
     }
 }
