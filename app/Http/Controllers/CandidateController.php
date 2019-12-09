@@ -19,16 +19,16 @@ class CandidateController extends Controller
         }
         else
         {
-            return response()->json(['message' => 'Failed to add. No data is added'], 400);
+            return response()->json(['message' => 'Failed to add. No data is added'], 204);
         }
     }
 
     public function index()
     {
-        $data = Candidate::all();
+        $data = Candidate::with('education_histories', 'portfolios', 'publications', 'references', 'work_experiences')->get();
         if(!empty($data))
         {
-            return response()->json(['message'=> 'Sucessfully retrieved.', 'data' => $data], 201);
+            return response()->json(['message'=> 'Sucessfully retrieved.', 'data' => $data], 200);
         }
         else
         {
@@ -50,7 +50,11 @@ class CandidateController extends Controller
                 $data->email = $request->email;
                 $data->website = $request->website;
                 $data->save();
-                return response()->json(['message' => 'Updated successfully', 'data' => $data], 201);
+                return response()->json(['message' => 'Updated successfully', 'data' => $data], 200);
+            }
+            else
+            {
+                return response()->json(['message' => 'Unable to update. No history data'], 204);
             }
         }
         else
@@ -67,16 +71,16 @@ class CandidateController extends Controller
             $data = Candidate::findOrFail($id);
             if(!empty($data))
             {
-                return response()->json(['message' => 'Retrieved successfully', 'data' => $data], 201);
+                return response()->json(['message' => 'Retrieved successfully', 'data' => $data], 200);
             }
             else
             {
-                return response()->json(['message' => 'Failed to retrieved successfully. No data was found'], 201);
+                return response()->json(['message' => 'Failed to retrieved successfully. No data was found'], 204);
             }
         }
         else
         {
-            return response()->json(['message' => 'No ID was passed. Please ensure you check the URL'],  401);
+            return response()->json(['message' => 'No ID was passed. Please ensure you check the URL'],  400);
         }
         
     }
@@ -88,11 +92,11 @@ class CandidateController extends Controller
             $candidate = Candidate::destroy($id);
             if($candidate)
             {
-                return response()->json(['message' => 'Deleted successfully'], 201);
+                return response()->json(['message' => 'Deleted successfully'], 200);
             }
             else
             {
-                return response()->json(['message' => 'Delete operation unsuccessful']. 201);
+                return response()->json(['message' => 'Delete operation unsuccessful. No data were found.']. 204);
             }
         }
         else
