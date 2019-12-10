@@ -20,7 +20,7 @@ $router->group(['prefix' => 'candidate'], function () use ($router) //serve cand
     $router->delete('/{id}', 'CandidateController@delete');
 });
 
-$router->group(['prefix' => 'education'], function () use ($router)
+$router->group(['prefix' => 'education'], function () use ($router) //serve education prefix
 {
     $router->get('/', 'EducationHistoryController@index');
     $router->get('/{candidateId}', 'EducationHistoryController@show');

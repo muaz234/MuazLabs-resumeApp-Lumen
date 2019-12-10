@@ -24,7 +24,7 @@ class EducationHistoryController extends Controller
     {
         if(!empty($request))
         {
-            $education = EducationHistory::create($request);
+            $education = EducationHistory::create($request->all());
             return response()->json(['message' => 'Added successfully', 'data' => $education], 201);
         }
         else

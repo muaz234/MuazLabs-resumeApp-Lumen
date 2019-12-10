@@ -8,7 +8,6 @@ use COM;
 
 class CandidateController extends Controller
 {
-    //
 
     public function add(Request $request)
     {
