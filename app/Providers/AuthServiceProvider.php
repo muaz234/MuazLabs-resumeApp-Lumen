@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,14 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        // $this->validate($request, [
+        //     'email' => 'required|email',
+        //     'name' => 'required',
+        //     'password' => 'required|max:50'
+        // ]);
+
+        // $user = User::create($request->all());
+        // return response()->json(['message' => 'User created successfully', 'data' => $user], 201);
     }
 
     /**
