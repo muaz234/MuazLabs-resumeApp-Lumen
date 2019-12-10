@@ -16,7 +16,7 @@ class PortfolioController extends Controller
         }
         else
         {
-            return response()->json(['message' => 'No data found.'], 400);
+            return response()->json(['message' => 'No data found.'], 200);
         }
 
     }
@@ -32,7 +32,7 @@ class PortfolioController extends Controller
             }
             else
             {
-                return response()->json(['message' => 'Unable to retrieve. No historical data found.'], 400);
+                return response()->json(['message' => 'Unable to retrieve. No historical data found.'], 200);
             }
         }
         else
@@ -52,7 +52,7 @@ class PortfolioController extends Controller
             }
             else
             {
-                return response()->json(['message' => 'Unable to be created.'], 400);
+                return response()->json(['message' => 'Unable to be created.'], 500);
             }
         }
         else
@@ -88,11 +88,11 @@ class PortfolioController extends Controller
             $portfolio = Portfolio::where($conditions)->delete();
             if($portfolio)
             {
-                return response()->json(['message' => 'Deleted successfully']);
+                return response()->json(['message' => 'Deleted successfully'], 200);
             }
             else
             {
-                return response()->json(['message' => 'Unable to delete. No historical data found']);
+                return response()->json(['message' => 'Unable to delete. No historical data found'], 500);
 
             }
         }

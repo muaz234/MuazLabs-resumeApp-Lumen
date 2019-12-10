@@ -74,7 +74,7 @@ class EducationHistoryController extends Controller
             }
             else
             {
-                return response()->json(['message' => 'Unable to delete.'], 204);
+                return response()->json(['message' => 'Unable to delete.'], 500);
             }
         }
         else

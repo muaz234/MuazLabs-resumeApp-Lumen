@@ -18,7 +18,7 @@ class CandidateController extends Controller
         }
         else
         {
-            return response()->json(['message' => 'Failed to add. No data is added'], 204);
+            return response()->json(['message' => 'Failed to add. No data received'], 204);
         }
     }
 
@@ -95,7 +95,7 @@ class CandidateController extends Controller
             }
             else
             {
-                return response()->json(['message' => 'Delete operation unsuccessful. No data were found.']. 204);
+                return response()->json(['message' => 'Delete operation unsuccessful.']. 500);
             }
         }
         else
