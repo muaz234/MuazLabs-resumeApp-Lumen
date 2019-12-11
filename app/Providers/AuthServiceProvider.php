@@ -50,10 +50,8 @@ class AuthServiceProvider extends ServiceProvider
             {
                 $api_token = $request->input('api_token');
             }
-            // $api_token = $request->input('api_token');
-            // $api_token_header = $request->header('api_token');
-            if ($api_token) {
-                // return response()->json(['message' => 'Authorized']);
+            if ($api_token) 
+            {
                 return User::where('api_token', $api_token)->first();
             }
         });
