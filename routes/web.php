@@ -11,10 +11,10 @@
 |
 */
 
-$router->group(['prefix' => 'candidate'], function () use ($router) //serve candidates prefix
+$router->group(['prefix' => 'candidate', 'middleware' => 'auth'], function () use ($router) //serve candidates prefix
 {
     $router->get('/', 'CandidateController@index');
-    $router->get('{/id}', 'CandidateController@show');
+    $router->get('/{id}', 'CandidateController@show');
     $router->post('/', 'CandidateController@add');
     $router->put('/{id}', 'CandidateController@edit');
     $router->delete('/{id}', 'CandidateController@delete');
@@ -22,7 +22,7 @@ $router->group(['prefix' => 'candidate'], function () use ($router) //serve cand
 
 });
 
-$router->group(['prefix' => 'education'], function () use ($router) //serve education prefix
+$router->group(['prefix' => 'education', 'middleware' => 'auth'], function () use ($router) //serve education prefix
 {
     $router->get('/', 'EducationHistoryController@index');
     $router->get('/{candidateId}', 'EducationHistoryController@show');
@@ -31,7 +31,7 @@ $router->group(['prefix' => 'education'], function () use ($router) //serve educ
     $router->delete('/{candidateId}/{id}', 'EducationHistoryController@delete');
 });
 
-$router->group(['prefix' => 'reference'], function () use ($router) //serve reference prefix
+$router->group(['prefix' => 'reference', 'middleware' => 'auth'], function () use ($router) //serve reference prefix
 {
     $router->get('/', 'ReferenceController@index');
     $router->get('/{candidateId}', 'ReferenceController@show');
@@ -40,7 +40,7 @@ $router->group(['prefix' => 'reference'], function () use ($router) //serve refe
     $router->delete('/{candidateId}/{id}', 'ReferenceController@delete');
 });
 
-$router->group(['prefix' => 'portfolio'], function () use ($router) //serve portfolio prefix
+$router->group(['prefix' => 'portfolio', 'middleware' => 'auth'], function () use ($router) //serve portfolio prefix
 {
     $router->get('/', 'PortfolioController@index');
     $router->get('/{candidateId}', 'PortfolioController@show');
@@ -50,7 +50,7 @@ $router->group(['prefix' => 'portfolio'], function () use ($router) //serve port
 });
 
 
-$router->group(['prefix' => 'publication'], function () use ($router) //serve publication prefix
+$router->group(['prefix' => 'publication', 'middleware' => 'auth'], function () use ($router) //serve publication prefix
 {
     $router->get('/', 'PublicationController@index');
     $router->get('/{candidateId}', 'PublicationController@show');
@@ -59,7 +59,7 @@ $router->group(['prefix' => 'publication'], function () use ($router) //serve pu
     $router->delete('/{candidateId}/{id}', 'PublicationController@delete');
 });
 
-$router->group(['prefix' => 'work_experience'], function () use ($router) //serve work_exp prefix
+$router->group(['prefix' => 'work_experience', 'middleware' => 'auth'], function () use ($router) //serve work_exp prefix
 {
     $router->get('/', 'WorkExperienceController@index');
     $router->get('/{candidateId}', 'WorkExperienceController@show');
@@ -68,7 +68,7 @@ $router->group(['prefix' => 'work_experience'], function () use ($router) //serv
     $router->delete('/{candidateId}/{id}', 'WorkExperienceController@delete');
 });
 
-$router->group(['prefix' => 'skill'], function () use ($router) //serve certificate prefix
+$router->group(['prefix' => 'skill', 'middleware' => 'auth'], function () use ($router) //serve certificate prefix
 {
     $router->get('/', 'SkillController@index');
     $router->get('/{candidateId}', 'SkillController@show');
@@ -77,7 +77,7 @@ $router->group(['prefix' => 'skill'], function () use ($router) //serve certific
     $router->delete('/{candidateId}/{id}', 'SkillController@delete');
 });
 
-$router->group(['prefix' => 'certificate'], function () use ($router) //serve certificate prefix
+$router->group(['prefix' => 'certificate', 'middleware' => 'auth'], function () use ($router) //serve certificate prefix
 {
     $router->get('/', 'CertificateController@index');
     $router->get('/{candidateId}', 'CertificateController@show');
@@ -85,3 +85,5 @@ $router->group(['prefix' => 'certificate'], function () use ($router) //serve ce
     $router->put('/{candidateId}/{id}', 'CertificateController@edit');
     $router->delete('/{candidateId}/{id}', 'CertificateController@delete');
 });
+
+$router->post('users/register', 'UserController@add');

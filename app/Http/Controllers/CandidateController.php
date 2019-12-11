@@ -95,7 +95,7 @@ class CandidateController extends Controller
             }
             else
             {
-                return response()->json(['message' => 'Delete operation unsuccessful.']. 500);
+                return response()->json(['message' => 'Delete operation unsuccessful.'], 500);
             }
         }
         else
