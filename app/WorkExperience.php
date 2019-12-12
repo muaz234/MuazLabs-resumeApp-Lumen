@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 class WorkExperience extends Model
 {
     //
-    protected $guarded=['candidate_id'];
+    protected $guarded=[];
 
     public function candidate()
     {

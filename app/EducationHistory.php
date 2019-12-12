@@ -6,7 +6,7 @@ class EducationHistory extends Model
     //
     // protected $table = 'education_histories';
 
-    protected $guarded = ['candidate_id'];
+    protected $guarded = [];
 
     public function candidate()
     {

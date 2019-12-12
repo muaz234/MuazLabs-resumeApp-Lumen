@@ -5,7 +5,7 @@ class Certificate extends Model
 {
     //
 
-    protected $guarded = ['candidate_id'];
+    protected $guarded = [];
 
     public function candidate()
     {
