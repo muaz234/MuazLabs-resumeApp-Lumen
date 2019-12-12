@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\EducationHistory;
+use Illuminate\Support\Facades\Auth;
+
 class EducationHistoryController extends Controller
 {
     //
@@ -24,7 +26,16 @@ class EducationHistoryController extends Controller
     {
         if(!empty($request))
         {
-            $education = EducationHistory::create($request->all());
+            $education = EducationHistory::create([
+                'qualification' => $request->qualification,
+                    'major' => $request->major,
+                    'name' => $request->name,
+                    'year' => $request->year,
+                    'final_score' => $request->final_score,
+                    'description' => $request->description,
+                    'institution' => $request->institution,
+                    'candidate_id' => Auth::id()
+            ]);
             return response()->json(['message' => 'Added successfully', 'data' => $education], 201);
         }
         else

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Skill;
+use Illuminate\Support\Facades\Auth;
+
 class SkillController extends Controller
 {
     public function index()
@@ -43,7 +45,13 @@ class SkillController extends Controller
     {
         if(!empty($request))
         {
-            $skill = Skill::create($request->all());
+            $skill = Skill::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'duration' => $request->duration,
+            'year' => $request->year,
+            'candidate_id' => Auth::id()
+            ]);
             if($skill)
             {
                 return response()->json(['message' => 'Created successfully.', 'data' => $skill], 201);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\WorkExperience;
+use Illuminate\Support\Facades\Auth;
+
 class WorkExperienceController extends Controller
 {
     //
@@ -37,7 +39,14 @@ class WorkExperienceController extends Controller
     {
         if(!empty($request))
         {
-            $experience = WorkExperience::create($request->all());
+            $experience = WorkExperience::create([
+                'company_name' => $request->company_name,
+                'position' => $request->position,
+                'duration' => $request->duration,
+                'description' => $request->description,
+                'location' => $request->location,
+                'candidate_id' => Auth::id()
+            ]);
             if($experience)
             {
                 return response()->json(['message' => 'Created successfully', 'data' => $experience], 201);

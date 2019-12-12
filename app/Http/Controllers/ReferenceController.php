@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reference;
+use Illuminate\Support\Facades\Auth;
+
 class ReferenceController extends Controller
 {
     //
@@ -45,7 +47,15 @@ class ReferenceController extends Controller
     {
         if(!empty($request))
         {
-            $reference = Reference::create($request->all());
+            $reference = Reference::create([
+                'name' => $request->name,
+                'designation' => $request->designation,
+                'year_known' => $request->year_known,
+                'company_name' => $request->company_name,
+                'email' => $request->email,
+                'contact_number' => $request->contact_number,
+                'candidate_id' => Auth::id()
+            ]);
             if($reference)
             {
                 return response()->json(['message' => 'Created successfully', 'data' => $reference], 201);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Publication;
+use Illuminate\Support\Facades\Auth;
+
 class PublicationController extends Controller
 {
     public function index()
@@ -44,7 +46,15 @@ class PublicationController extends Controller
     {
         if(!empty($request))
         {
-            $publication = Publication::create($request->all());
+            $publication = Publication::create([
+        'title' => $request->title,
+        'authors' => $request->authors,
+        'year_published' => $request->year_published,
+        'conference_presented' => $request->conference_presented,
+        'description' => $request->description,
+        'published_at' => $request->published_at,
+        'candidate_id' => Auth::id()
+            ]);
             if($publication)
             {
                 return response()->json(['message' => 'Created successfully', 'data' => $publication], 201);

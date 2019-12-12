@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Candidate;
 use Illuminate\Http\Request;
 use App\Certificate;
+use Illuminate\Support\Facades\Auth;
+
 class CertificateController extends Controller
 {
     //
@@ -46,7 +48,13 @@ class CertificateController extends Controller
     {
         if(!empty($request))
         {
-            $certificate = Candidate::create($request->all());
+            $certificate = Candidate::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'duration' => $request->duration,
+                'year' => $request->year,
+                'candidate_id' => Auth::id() 
+            ]);
             if($certificate)
             {
                 return response()->json(['message' => 'Created successfully.', 'data' => $certificate], 201);

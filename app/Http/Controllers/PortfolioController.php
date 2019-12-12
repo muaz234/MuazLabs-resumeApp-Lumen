@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Portfolio;
+use Illuminate\Support\Facades\Auth;
+
 class PortfolioController extends Controller
 {
     //
@@ -45,7 +47,13 @@ class PortfolioController extends Controller
     {
         if(!empty($request))
         {
-            $portfolio = Portfolio::create($request->all());
+            $portfolio = Portfolio::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'duration' => $request->duration,
+                'year' => $request->year,
+                'candidate_id' => Auth::id()
+            ]);
             if($portfolio)
             {
                 return response()->json(['message' => 'Created successfully.', 'data' => $portfolio], 201);

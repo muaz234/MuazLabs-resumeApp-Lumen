@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Candidate;
 use COM;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
@@ -13,7 +14,16 @@ class CandidateController extends Controller
     {
         if(!empty($request))
         {
-            $data = Candidate::create($request->all());
+            $data = Candidate::create
+            ([
+                'id' => Auth::id(),
+                'fullname' => $request->fullname,
+                'job_title' => $request->job_title,
+                'address' => $request->address,
+                'contact_no' => $request->contact_no,
+                'email' => $request->email,
+                'website' => $request->website
+                ]);
             return response()->json(['message' => 'Added successfully', 'data' => $data], 201);
         }
         else
